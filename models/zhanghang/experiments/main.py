@@ -84,6 +84,7 @@ def optimize(args):
     mse_loss = torch.nn.MSELoss()
     # optimizing the images
     tbar = trange(args.iters)
+    jano = 0
     for e in tbar:
         utils.imagenet_clamp_batch(output, 0, 255)
         optimizer.zero_grad()
@@ -99,6 +100,8 @@ def optimize(args):
         total_loss = content_loss + style_loss
         total_loss.backward()
         optimizer.step()
+        print(jano)
+        jano +=1 
         tbar.set_description(total_loss.data.cpu().numpy()[0])
     # save the image    
     output = utils.add_imagenet_mean_batch(output)

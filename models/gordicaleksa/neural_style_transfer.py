@@ -208,7 +208,7 @@ if __name__ == "__main__":
     parser.add_argument("--init_method", type=str,
                         choices=['random', 'content', 'style'], default='content')
     parser.add_argument("--saving_freq", type=int,
-                        help="saving frequency for intermediate images (-1 means only final)", default=50)
+                        help="saving frequency for intermediate images (-1 means only final)", default=5)
 
     args = parser.parse_args()
 

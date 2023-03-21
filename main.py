@@ -17,6 +17,9 @@ app = FastAPI()
 process = None
 output_path = "images/output.jpg"
 
+params = ''
+
+
 origins = [
     "http://localhost",
     "http://localhost:8000",
@@ -42,11 +45,13 @@ class ImageRequest(BaseModel):
     id: str
     contentData: str
     styleData: str
+    params: str
 
 
 @app.post("/startProcess")
 async def startProcess(data: ImageRequest):
     global process
+    global params
     # id: "anaoas",
     # id: "msg-net-istucnn",
     # id: "istucnn-2",
@@ -57,23 +62,29 @@ async def startProcess(data: ImageRequest):
 
     if (data.id == "anaoas"):
         selected_script = 'models/crowsonkb/script.sh'
+        params = data.params
+
     elif (data.id == "msg-net-istucnn"):
         selected_script = 'models/zhanghang/script.sh'
     elif (data.id == "istucnn-2"):
         selected_script = 'models/gordicaleksa/script.sh'
+        params = data.params
+
     elif (data.id == "nnst"):
         selected_script = 'models/zhanghang/script.sh'
     else:
-        return {"error": "Invalid script number."}
+        return {"error": "Neznámy model."}
 
     if process is not None:
-        return {"error": "Process already running."}
+        return {"error": "Proces už beží."}
 
     delete_image(output_path)
 
-    process = subprocess.Popen(['sh', selected_script])
+    process = subprocess.Popen(['sh', selected_script, params])
 
-    return {"message": f"Started script {data.id}."}
+    params = ''
+
+    return {"message": f"Štartujem model {data.id}."}
 
 
 @app.post("/checkProcess")
