@@ -1,17 +1,11 @@
-/env/lib
-/env/lib64
+/env
 
 
-/models/crowsonkb/crowsonkb_env/lib
-/models/crowsonkb/crowsonkb_env/lib64
-
-/models/gordicaleksa/py_env/venv/lib
-/models/gordicaleksa/py_env/venv/lib64
-
-/models/zhanghang/zhanghang_env/lib
+/models/crowsonkb/crowsonkb_env
+/models/gordicaleksa/py_env/venv
+/models/zhanghang/zhanghang_env
 /models/zhanghang/experiments/models/vgg16.t7
 /models/zhanghang/experiments/models/21styles.model
-/models/zhanghang/zhanghang_env/lib64
 
 
 .DS_Store
