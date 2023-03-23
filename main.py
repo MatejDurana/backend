@@ -20,12 +20,12 @@ output_path = "images/output.jpg"
 params = ''
 
 
-origins = [
-    "http://localhost",
-    "http://localhost:8000",
-    "http://0.0.0.0",
-    "http://0.0.0.0:8000",
-]
+origins = ["*"]
+
+#"http://localhost",
+#"http://localhost:8000",
+#"http://0.0.0.0",
+#"http://0.0.0.0:8000",
 
 app.add_middleware(
     CORSMiddleware,
