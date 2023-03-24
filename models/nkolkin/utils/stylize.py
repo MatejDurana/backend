@@ -23,7 +23,7 @@ def produce_stylization(content_im, style_im, phi,
                         flip_aug=False,
                         content_loss=False,
                         zero_init=False,
-                        dont_colorize=False):
+                        dont_colorize=False,output_path='images/output.jpg'):
     """ Produce stylization of 'content_im' in the style of 'style_im'
         Inputs:
             content_im -- 1x3xHxW pytorch tensor containing rbg content image
@@ -114,6 +114,14 @@ def produce_stylization(content_im, style_im, phi,
         # Get output at current resolution from pyramid
         with torch.no_grad():
             output_im = syn_pyr(s_pyr)
+            
+            #Moj kod
+            # Convert from pyTorch to numpy, clip to valid range
+            new_im_out = np.clip(output_im[0].permute(1, 2, 0).detach().cpu().numpy(), 0., 1.)
+            # Save stylized output
+            save_im = (new_im_out * 255).astype(np.uint8)
+            imwrite(output_path, save_im)
+            #Moj kod
 
     # Perform final pass using feature splitting (pass in flip_aug argument
     # because style features are extracted internally in this regime)
