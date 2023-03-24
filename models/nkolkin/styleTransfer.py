@@ -70,7 +70,7 @@ output = produce_stylization(content_im_orig, style_im_orig, phi,
                             max_scls=max_scls,
                             flip_aug=flip_aug,
                             content_loss=content_loss,
-                            dont_colorize=args.dont_colorize)
+                            dont_colorize=args.dont_colorize, output_path=output_path)
 torch.cuda.synchronize()
 print('Done! total time: {}'.format(time.time() - start_time))
 
