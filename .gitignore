@@ -2,7 +2,7 @@
 
 
 /models/crowsonkb/crowsonkb_env
-/models/gordicaleksa/py_env/venv
+/models/gordicaleksa/gordicaleksa_env
 /models/zhanghang/zhanghang_env
 /models/zhanghang/experiments/models/vgg16.t7
 /models/zhanghang/experiments/models/21styles.model

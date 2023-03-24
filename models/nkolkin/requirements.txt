@@ -1,0 +1,5 @@
+torch==1.11.0
+Imageio==2.8.0
+numpy==1.21.1
+ipython==7.30.1
+torchvision==0.12.0

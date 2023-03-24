@@ -22,11 +22,6 @@ params = ''
 
 origins = ["*"]
 
-#"http://localhost",
-#"http://localhost:8000",
-#"http://0.0.0.0",
-#"http://0.0.0.0:8000",
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
