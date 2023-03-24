@@ -66,7 +66,7 @@ async def startProcess(data: ImageRequest):
         params = data.params
 
     elif (data.id == "nnst"):
-        selected_script = 'models/zhanghang/script.sh'
+        selected_script = 'models/nkolkin/script.sh'
     else:
         return {"error": "Neznámy model."}
 
