@@ -67,6 +67,7 @@ async def startProcess(data: ImageRequest):
 
     elif (data.id == "nnst"):
         selected_script = 'models/nkolkin/script.sh'
+        params = data.params
     else:
         return {"error": "Neznámy model."}
 
