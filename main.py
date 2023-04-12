@@ -20,7 +20,6 @@ process = None
 params = ''
 
 
-
 origins = ["*"]
 
 app.add_middleware(
@@ -32,7 +31,6 @@ app.add_middleware(
 )
 
 
-
 class ImageRequest(BaseModel):
     id: str
     contentData: str
@@ -41,7 +39,7 @@ class ImageRequest(BaseModel):
 
 
 @app.post("/startProcess")
-async def startProcess(data: ImageRequest):
+async def start_process(data: ImageRequest):
     global process
     global params
     saveImages(data.contentData, data.styleData)
@@ -54,7 +52,7 @@ async def startProcess(data: ImageRequest):
 
     elif (data.id == "msg-net-istucnn"):
         selected_script = 'models/zhanghang/script.sh'
-        
+
     elif (data.id == "istucnn-2"):
         selected_script = 'models/gordicaleksa/script.sh'
         params = data.params
