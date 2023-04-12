@@ -14,10 +14,11 @@ import psutil
 
 
 app = FastAPI()
-process = None
 output_path = "images/output.jpg"
 
+process = None
 params = ''
+
 
 
 origins = ["*"]
@@ -31,10 +32,6 @@ app.add_middleware(
 )
 
 
-@app.get("/")
-def root():
-    return {"Hello": "World"}
-
 
 class ImageRequest(BaseModel):
     id: str
@@ -47,10 +44,6 @@ class ImageRequest(BaseModel):
 async def startProcess(data: ImageRequest):
     global process
     global params
-    # id: "anaoas",
-    # id: "msg-net-istucnn",
-    # id: "istucnn-2",
-    # id: "nnst",
     saveImages(data.contentData, data.styleData)
 
     selected_script = None
@@ -61,6 +54,7 @@ async def startProcess(data: ImageRequest):
 
     elif (data.id == "msg-net-istucnn"):
         selected_script = 'models/zhanghang/script.sh'
+        
     elif (data.id == "istucnn-2"):
         selected_script = 'models/gordicaleksa/script.sh'
         params = data.params
@@ -88,7 +82,7 @@ def check_process():
     global process
 
     if process is None:
-        return {"message": "No process running.", "isRunning": False}
+        return {"message": "Žiadny proces nebeží.", "isRunning": False}
 
     if os.path.exists(output_path):
         image = cv2.imread(output_path)
@@ -96,13 +90,13 @@ def check_process():
         base64_image = base64.b64encode(buffer).decode('utf-8')
         base64_image = "data:image/jpeg;base64," + base64_image
     else:
-        return {"message": "Output image not found!.", "isRunning": True, "output_image": ""}
+        return {"message": "Výsledný obrázok sa nenašiel.", "isRunning": True, "output_image": ""}
 
     if process.poll() is not None:
         process = None
-        return {"message": "Process finished.", "isRunning": False, "output_image": base64_image}
+        return {"message": "Proces dokončený.", "isRunning": False, "output_image": base64_image}
 
-    return {"message": "Process running.", "isRunning": True, "output_image": base64_image}
+    return {"message": "Proces beží.", "isRunning": True, "output_image": base64_image}
 
 
 @app.post("/closeProcess")
@@ -112,9 +106,9 @@ async def close_process():
         process_pid = process.pid
         kill_process_and_children(process_pid)
         process = None
-        return {"message": "Process terminated"}
+        return {"message": "Proces ukončený"}
     else:
-        return {"message": "No process running"}
+        return {"message": "Žiadny proces aktuálne nie je spustený"}
 
 
 def kill_process_and_children(pid):
@@ -140,6 +134,6 @@ def decodeImage(img):
 def delete_image(image_path):
     try:
         os.remove(image_path)
-        print("Image " + image_path + " deleted successfully!")
+        print("Obrázok " + image_path + " bol odstránený!")
     except FileNotFoundError:
-        print("Image " + image_path + " not found!")
+        print("Obrázok " + image_path + " sa nenašiel!")
