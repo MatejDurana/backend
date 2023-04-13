@@ -4,12 +4,9 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 import base64
 import os
-import io
 import numpy as np
-from matplotlib import pyplot as plt
 import cv2
 import subprocess
-import signal
 import psutil
 
 
@@ -120,7 +117,6 @@ def kill_process_and_children(pid):
 def saveImages(content, style):
     cv2.imwrite("images/content_image.jpg", decodeImage(content))
     cv2.imwrite("images/style_image.jpg", decodeImage(style))
-    return
 
 
 def decodeImage(img):
