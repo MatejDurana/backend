@@ -1,5 +1,3 @@
-git clone https://github.com/MatejDurana/backend.git
-cd backend
 python3.10 -m venv env
 . env/bin/activate
 python3.10 -m pip install -r requirements.txt
