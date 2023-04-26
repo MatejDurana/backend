@@ -28,9 +28,9 @@ cd ..
 
 
 cd gordicaleksa
-python3.6 -m venv gordicaleksa_env
+python3.7 -m venv gordicaleksa_env
 . gordicaleksa_env/bin/activate
-python3.6 -m pip install -r requirements.txt
+python3.7 -m pip install -r requirements.txt
 deactivate
 cd ..
 
