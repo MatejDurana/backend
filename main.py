@@ -130,4 +130,4 @@ def delete_image(image_path):
         os.remove(image_path)
         print("Obrázok " + image_path + " bol odstránený!")
     except FileNotFoundError:
-        print("Obrázok " + image_path + " sa nenašiel!")
+        print("Obrázok " + image_path + " sa nenašiel, nič sa neodstránilo!")
